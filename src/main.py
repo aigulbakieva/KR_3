@@ -2,7 +2,7 @@ from utils import load_file, get_executed, get_sorted_by_date, get_five_operatio
 
 
 def main():
-    all_operations = load_file()
+    all_operations = load_file('operations.json')
     executed_only = get_executed(all_operations)
     sorted_operations = get_sorted_by_date(executed_only)
     only_five_operations = get_five_operations(sorted_operations)
