@@ -15,3 +15,8 @@ def get_executed(operations):
             result.append(operation)
     return result
 
+def get_sorted_by_date(operations):
+
+    result = sorted(operations,
+           key=lambda operation: datetime.datetime.fromisoformat(operation.get('date')))
+    return result
