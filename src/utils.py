@@ -20,3 +20,6 @@ def get_sorted_by_date(operations):
            key=lambda operation: datetime.datetime.fromisoformat(operation.get('date')),
            reverse=True)
     return result
+
+def get_five_operations(operations):
+    return operations[:5]
