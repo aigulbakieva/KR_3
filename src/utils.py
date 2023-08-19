@@ -3,12 +3,22 @@ import datetime
 
 
 def load_file(path):
+    """
+    Функция для загрузки json-файла.
+    :param path: путь до файла
+    :return: list
+    """
     with open(path, "r", encoding="UTF-8") as f:
         operations = json.load(f)
         return operations
 
 
 def get_executed(operations):
+    """
+    Функция фильтрует по статусу операции.
+    :param operations: список словарей
+    :return:list
+    """
     result = []
     for operation in operations:
         if 'state' in operation and operation['state'] == 'EXECUTED':
@@ -16,21 +26,41 @@ def get_executed(operations):
     return result
 
 def get_sorted_by_date(operations):
+    """
+    Функция сортирует по дате.
+    :param operations:
+    :return:list
+    """
     result = sorted(operations,
            key=lambda operation: datetime.datetime.fromisoformat(operation.get('date')),
            reverse=True)
     return result
 
 def get_five_operations(operations):
+    """
+    Функция возвращает последние  5 успешных операций
+    :param operations:
+    :return: list
+    """
     return operations[:5]
 
 
 def formate_date(datetime):
+    """
+    Функция преобразует даты к виду ДД.ММ.ГГГГ.
+    :param datetime:
+    :return: str
+    """
     only_date = datetime[:10]
     date_splitted = only_date.split('-')
     return '.'.join(reversed(date_splitted))
 
 def hide_requisites(requisites):
+    """
+    Функция маскирует номер счета/карты.
+    :param requisites:
+    :return: str
+    """
     req_info = requisites.split()
     number = req_info[-1]
     if requisites.lower().startswith("счет"):
@@ -42,6 +72,11 @@ def hide_requisites(requisites):
 
 
 def prepare_to_output(operation):
+    """
+    Функция возвращает всю информацию об опреации.
+    :param operation:
+    :return: list
+    """
     # line_1 processing
     line_1_elements = []
     date = operation['date']
