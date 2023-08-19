@@ -1,7 +1,8 @@
 import pytest
+import os
+
 from src.utils import (load_file, get_executed, get_sorted_by_date, get_five_operations,
                        formate_date, hide_requisites, prepare_to_output)
-import os
 from config import ROOT_DIR
 
 
